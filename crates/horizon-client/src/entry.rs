@@ -13,8 +13,7 @@ pub fn main_with(mods: crate::mod_api::Mods) {
         log::warn!("Trait mods already installed; ignoring the second list");
     }
     horizon_threads::configure_allocator();
-    // The windows' icon: Horizon's, given to the engine's window code (docs/layers.md).
-    horizon_client::window::set_icon_png(horizon_theme::ICON_PNG);
+    give_horizon_look();
     // horizon-extras (docs/forking.md): without the feature, no Horizon Settings or Mods page.
     if !cfg!(feature = "horizon-extras") {
         horizon_client::options_ui::HORIZON_EXTRAS
@@ -342,4 +341,31 @@ fn raise_open_file_limit() {
             }
         }
     }
+}
+
+/// Horizon's look, given to the engine's extension points (docs/layers.md): the windows' icon and
+/// the colours of the menus vanilla doesn't have (`docs/design-system.md`).
+fn give_horizon_look() {
+    use horizon_client::menu_style::{MenuStyle, OverlayColours, SettingsColours};
+    horizon_client::window::set_icon_png(horizon_theme::ICON_PNG);
+    let blocks = horizon_theme::BLOCKS_DARK;
+    horizon_client::menu_style::install(MenuStyle {
+        settings: SettingsColours {
+            page: blocks.page,
+            ink: blocks.ink,
+            ink_soft: blocks.ink_soft,
+            muted: blocks.muted,
+            outline: blocks.outline,
+            accent: blocks.accent,
+            face: blocks.face,
+            face_hover: 0x6a50e6,
+            success: blocks.success,
+            warn: blocks.warn,
+            danger: blocks.danger,
+        },
+        overlay: OverlayColours {
+            page: horizon_theme::DARK.page,
+            backdrop_muted: horizon_theme::BACKDROP_MUTED,
+        },
+    });
 }
