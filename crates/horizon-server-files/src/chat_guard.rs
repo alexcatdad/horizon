@@ -78,7 +78,7 @@ impl Mute {
 }
 
 /// A server's chat filter: its word list, the players' hits and the mutes.
-pub trait ChatGuard: Send {
+pub trait ChatGuard: Send + Sync {
     /// Whether `text` holds a word of the list.
     fn matches(&self, text: &str) -> bool;
     /// The player's mute, if they are muted at `now`.
