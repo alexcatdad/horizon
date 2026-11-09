@@ -6,12 +6,12 @@
 //! system's Blocks palette, `docs/design-system.md`), in a lighter form: square panels of
 //! dark glass with a thin edge, so the world shows through, flat controls, and the face on
 //! the one main button, in vanilla's font.
+use crate::menu_style::{self, SettingsColours};
 use crate::{
     hud::{HudAtlas, HudBatch},
     text::Text,
     ui,
 };
-use crate::menu_style::{self, SettingsColours};
 
 /// The settings pages' colours (`menu_style`, given at startup).
 fn b() -> &'static SettingsColours {

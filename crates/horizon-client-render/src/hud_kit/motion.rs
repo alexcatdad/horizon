@@ -203,7 +203,12 @@ mod tests {
         for motion in horizon_theme::MOTION {
             for i in 0..=20 {
                 let t = i as f32 / 20.0;
-                assert_eq!(bezier(motion.curve, t), motion.ease(t), "{} at {t}", motion.name);
+                assert_eq!(
+                    bezier(motion.curve, t),
+                    motion.ease(t),
+                    "{} at {t}",
+                    motion.name
+                );
             }
         }
     }
