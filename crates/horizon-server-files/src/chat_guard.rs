@@ -86,7 +86,14 @@ pub trait ChatGuard: Send {
     /// The mutes in force at `now`, by name.
     fn mutes(&self, now: i64) -> Vec<&Mute>;
     /// An operator's `/mute` (`until` `None`) or `/tempmute`: replaces the player's mute.
-    fn mute(&mut self, uuid: u128, name: &str, until: Option<i64>, by: &str, reason: Option<String>);
+    fn mute(
+        &mut self,
+        uuid: u128,
+        name: &str,
+        until: Option<i64>,
+        by: &str,
+        reason: Option<String>,
+    );
     /// A hit by the player at `now`: the hit's number, and what it leads to.
     fn strike(&mut self, uuid: u128, name: &str, now: i64) -> (u32, Action);
     /// Lifts a player's mute, by name; the name as muted, if they were.

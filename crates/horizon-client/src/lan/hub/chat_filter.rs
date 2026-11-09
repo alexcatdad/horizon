@@ -3,12 +3,12 @@
 //! its list, mutes and escalation. A refused text reaches nobody; the sender is told in private, and the
 //! game logs it and bans when the escalation says so (`HostEvent::ChatFiltered`).
 use super::{HostEvent, Hub, chat::now_millis};
-use horizon_server_files::chat_guard::{Action, ChatGuard, Mute, duration_text};
-pub use horizon_server_files::chat_guard::Place;
 use horizon_protocol::{
     packets::play::{self, Clientbound as C},
     text::literal,
 };
+pub use horizon_server_files::chat_guard::Place;
+use horizon_server_files::chat_guard::{Action, ChatGuard, Mute, duration_text};
 use horizon_world::nbt::{JavaString, Tag};
 
 /// What the sender reads when their text held a slur.

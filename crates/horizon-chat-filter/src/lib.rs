@@ -467,7 +467,14 @@ impl ChatGuard for Guard {
         Guard::mutes(self, now)
     }
 
-    fn mute(&mut self, uuid: u128, name: &str, until: Option<i64>, by: &str, reason: Option<String>) {
+    fn mute(
+        &mut self,
+        uuid: u128,
+        name: &str,
+        until: Option<i64>,
+        by: &str,
+        reason: Option<String>,
+    ) {
         Guard::mute(self, uuid, name, until, by, reason);
     }
 

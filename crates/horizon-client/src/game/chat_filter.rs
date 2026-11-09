@@ -91,10 +91,7 @@ pub(super) const MUTE_USAGES: [&str; 4] = [
 /// `/mute <player> [duration] [reason]` (`words`, the command first): how long, when the word after
 /// the name is a duration (`10m`, `2h`, `1d`; none: until `/unmute`), and the index the reason starts at.
 fn mute_time(words: &[&str]) -> (Option<i64>, usize) {
-    match words
-        .get(2)
-        .and_then(|w| chat_guard::parse_duration(w))
-    {
+    match words.get(2).and_then(|w| chat_guard::parse_duration(w)) {
         Some(ms) => (Some(ms), 3),
         None => (None, 2),
     }
